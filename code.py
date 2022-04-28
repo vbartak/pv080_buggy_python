@@ -22,8 +22,13 @@ def authenticate(password):
 
 
 def fetch_website(urllib_version, url):
+    try:
+        urllib_version_int = int(urllib_version)
+    except:
+        print("Invalid version")
+
     # Import the requested version of urllib
-    exec(f"import urllib{urllib_version} as urllib", globals())
+    exec(f"import urllib{urllib_version_int} as urllib", globals())
     # Fetch and print the requested URL
     http = urllib.PoolManager()
     r = http.request('GET', url)
